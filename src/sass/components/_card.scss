@@ -1,0 +1,108 @@
+@use "../base/styles" as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(135px - 16px);
+  height: calc(160px - 20px * 2);
+  padding-left: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  border: solid 1px $border-primary;
+  border-radius: 15px;
+
+  &__type {
+    &__title {
+      @include title;
+      margin-bottom: 11px;
+    }
+    &__price {
+      @include main-text;
+    }
+    &__text {
+      @include main-text;
+    }
+  }
+
+  &__promo {
+    font-size: 0.8125rem;
+    color: $font-primary;
+  }
+
+  .logo-wrapper {
+    width: 2.5rem;
+    height: 2.5rem;
+    position: relative;
+    .logo {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__price {
+    margin-left: auto;
+    &__content {
+      margin: 0;
+      font-size: 0.875rem;
+      color: $font-tertiary;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    border-color: $border-secondary;
+    transition: border-color 300ms;
+  }
+
+  &--addon {
+    flex-direction: row;
+    justify-content: flex-start;
+
+    width: calc(100% - 24px * 2);
+    height: calc(80px - 22px * 2);
+    padding: 24px 22px;
+
+    gap: 25px;
+    align-items: center;
+
+    .checkbox {
+      content: "";
+      height: 1.25rem;
+      width: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 1px solid $border-primary;
+      border-radius: 5px;
+    }
+  }
+}
+
+.check {
+  display: none;
+  &:checked {
+    + .card--addon {
+      background-color: hsl(217, 100%, 97%);
+      border-color: hsl(243, 100%, 62%);
+
+      .checkbox {
+        background-color: hsl(243, 100%, 62%);
+      }
+    }
+  }
+}
+
+.radio-input {
+  display: none;
+  &:checked {
+    + .card {
+      background-color: $bg-tertiary;
+      border-color: $border-secondary;
+    }
+  }
+}

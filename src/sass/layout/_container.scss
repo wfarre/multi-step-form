@@ -1,0 +1,14 @@
+@use "../base/styles";
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  &--plan {
+    flex-direction: row;
+  }
+  &--vertical {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}

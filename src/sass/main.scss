@@ -1,0 +1,42 @@
+@use "./base/styles" as *;
+@use "./components/sidebar";
+@use "./components/buttons";
+@use "./components/card";
+@use "./components/switch";
+@use "./layout/header";
+@use "./layout/container";
+@use "./layout/footer";
+@use "./layout/sections";
+@use "./components/form";
+
+.App {
+  position: absolute;
+  display: flex;
+  justify-content: flex-start;
+
+  width: calc(940px - 16px - 100px);
+  height: calc(600px - 16px * 2);
+  margin: auto auto;
+  padding: 16px;
+  padding-right: 100px;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: $bg-primary;
+
+  border-radius: 15px;
+  gap: 90px;
+}
+
+main {
+  position: relative;
+  width: 70%;
+  height: calc(100% - 45px - 18px);
+  padding: 45px 0 0 0;
+}
+
+.hidden {
+  display: none;
+}

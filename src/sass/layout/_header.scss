@@ -1,0 +1,16 @@
+@use "../base/styles" as *;
+
+.header {
+  position: relative;
+  width: 100%;
+  margin-bottom: 40px;
+  &__title {
+    @include text($main-title-size, 700);
+    margin-bottom: 22px;
+    color: $font-primary;
+  }
+  &__subtitle {
+    width: fit-content;
+    @include main-text;
+  }
+}

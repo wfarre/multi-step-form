@@ -1,0 +1,79 @@
+@use "../base/styles" as *;
+
+.sidebar {
+  position: relative;
+  overflow: hidden;
+
+  width: 33.25%;
+  width: 274px;
+  height: 100%;
+  min-width: 274px;
+
+  border-radius: 15px 0 0 15px;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 230px;
+    margin-top: 45px;
+
+    &__element {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 34px 1fr;
+      grid-template-areas:
+        "index sub"
+        "index text";
+      column-gap: 18px;
+      margin-left: 34px;
+
+      &__index {
+        grid-area: index;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-self: center;
+        align-self: center;
+        width: 34px;
+        height: 34px;
+
+        color: hsl(0, 0%, 100%);
+        border: 1px solid $border-primary;
+        border-radius: 100%;
+
+        &.selected {
+          background-color: hsl(206, 94%, 87%);
+          color: $font-primary;
+
+          // transform: translateY(50px);
+          transition: all 500ms;
+        }
+      }
+      &__sub {
+        grid-area: sub;
+        color: $font-secondary;
+        font-size: 13px;
+      }
+      &__txt {
+        grid-area: text;
+
+        margin: 0;
+        color: hsl(0, 0%, 100%);
+        text-transform: uppercase;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.sidebar__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url("../assets/images/bg-sidebar-desktop.svg");
+  background-size: cover;
+  z-index: -1;
+}

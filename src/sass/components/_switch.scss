@@ -1,0 +1,59 @@
+@use "../base/styles" as *;
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-top: 32px;
+  background-color: $bg-tertiary;
+  border-radius: 15px;
+  gap: 25px;
+}
+
+.switch {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  &__checkbox {
+    &:checked {
+      + .slider {
+        &::before {
+          transform: translateX(calc(40px - 13px - 7px));
+          transition: transform 300ms;
+        }
+      }
+    }
+  }
+}
+
+.slider {
+  content: "";
+  cursor: pointer;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  border-radius: 20px;
+  background-color: $btn-bg-primary;
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: $btn-font-secondary;
+    height: 13px;
+    width: 13px;
+    top: 3.5px;
+    left: 3.5px;
+    border-radius: 100%;
+    transition: transform 300ms;
+  }
+}
+
+.toggle-title {
+  color: $font-primary;
+  font-size: 0.8125rem;
+}

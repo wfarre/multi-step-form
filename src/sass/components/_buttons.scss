@@ -1,0 +1,23 @@
+@use "../base/styles" as *;
+
+.btn {
+  height: 48px;
+  width: 120px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  color: $btn-font-primary;
+  background-color: $btn-bg-primary;
+  &:hover {
+    cursor: pointer;
+    background-color: $btn-bg-secondary;
+    color: $btn-font-secondary;
+  }
+
+  &--back {
+    padding-left: 0;
+    background-color: transparent;
+    color: $btn-font-tertiary;
+    text-align: left;
+  }
+}

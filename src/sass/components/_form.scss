@@ -1,0 +1,31 @@
+@use "../base/styles" as *;
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  &__element {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    &__label {
+      @include text($text, 700);
+      color: $font-primary;
+    }
+
+    &__input {
+      padding-top: 17px;
+      padding-bottom: 12px;
+      padding-left: 16px;
+      @include main-text;
+      color: $font-primary;
+      border-radius: 10px;
+      border-color: $border-primary;
+      border-width: 1px;
+      &::placeholder {
+        color: $font-secondary;
+      }
+    }
+  }
+}

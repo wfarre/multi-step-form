@@ -1,0 +1,38 @@
+$body-bg: hsl(228, 100%, 84%);
+$font-primary: hsl(213, 96%, 18%);
+$font-secondary: hsl(231, 11%, 63%);
+$font-tertiary: hsl(243, 100%, 62%);
+$bg-secondary: hsl(231, 11%, 63%);
+$bg-primary: hsl(0, 0%, 100%);
+$bg-tertiary: hsl(217, 100%, 97%);
+
+$border-primary: hsl(229, 24%, 87%);
+$border-secondary: hsl(243, 100%, 62%);
+
+$btn-bg-primary: hsl(213, 96%, 18%);
+$btn-font-primary: hsl(206, 94%, 87%);
+$btn-bg-secondary: hsl(243, 100%, 62%);
+$btn-font-secondary: hsl(0, 0%, 100%);
+$btn-font-tertiary: hsl(231, 11%, 63%);
+
+$strawberry-red: hsl(354, 84%, 57%);
+
+@mixin text($font-size, $font-weight) {
+  margin: 0;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+$main-title-size: 1.5rem;
+$title: 0.875rem;
+$text: 0.8125rem;
+
+@mixin title() {
+  @include text($title, 500);
+  color: $font-primary;
+}
+
+@mixin main-text {
+  @include text($text, 400);
+  color: $font-secondary;
+}

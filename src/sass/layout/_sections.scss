@@ -1,0 +1,81 @@
+@use "../base/styles" as *;
+
+.summary-main {
+  background-color: $bg-tertiary;
+  border-radius: 15px;
+  padding: 20px 23px;
+
+  .container--vertical {
+    row-gap: 24px;
+  }
+}
+
+.plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__info {
+    &__title {
+      color: hsl(213, 96%, 18%);
+      font-size: 0.8125rem;
+      margin: 0;
+    }
+    &__change {
+      color: hsl(231, 11%, 63%);
+      font-size: 0.8125rem;
+    }
+  }
+
+  &__price {
+    color: hsl(213, 96%, 18%);
+    font-size: 0.8125rem;
+  }
+}
+
+.addons {
+  border-top: 1px solid $border-primary;
+  .addon-list {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    padding: 0;
+    margin: 0;
+    margin-top: 20px;
+
+    color: $font-secondary;
+    font-size: 0.8125rem;
+
+    list-style-type: none;
+    gap: 24px;
+  }
+  .addon {
+    display: flex;
+    justify-content: space-between;
+    &__name {
+      margin: 0;
+    }
+    &__price {
+      color: $font-primary;
+      font-size: 0.8125rem;
+    }
+  }
+}
+
+.section__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 23px;
+  margin-top: 33px;
+
+  .total-title {
+    color: $font-secondary;
+    font-size: 0.8125rem;
+  }
+  .total-price {
+    color: $font-tertiary;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+}
