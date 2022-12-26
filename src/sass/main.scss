@@ -14,11 +14,14 @@
   display: flex;
   justify-content: flex-start;
 
-  width: calc(940px - 16px - 100px);
-  height: calc(600px - 16px * 2);
+  width: calc(940px - 1rem - 100px);
+  // width: calc(65vw - 1rem - 6.9vw);
+  min-width: 600px;
+
+  height: calc(600px - 1rem * 2);
   margin: auto auto;
-  padding: 16px;
-  padding-right: 100px;
+  padding: 1rem;
+  padding-right: 6.9vw;
 
   top: 50%;
   left: 50%;
@@ -28,6 +31,7 @@
 
   border-radius: 15px;
   gap: 90px;
+  gap: 6.9vw;
 }
 
 main {

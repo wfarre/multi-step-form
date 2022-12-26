@@ -5,12 +5,23 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  .error {
+    > .form__element__input {
+      border-color: $strawberry-red;
+
+      &:hover {
+        cursor: pointer;
+        border-color: $border-secondary;
+      }
+    }
+  }
   &__element {
     display: flex;
     flex-direction: column;
     gap: 11px;
+    position: relative;
     &__label {
-      @include text($text, 700);
+      @include text($text, 400);
       color: $font-primary;
     }
 
@@ -23,9 +34,25 @@
       border-radius: 10px;
       border-color: $border-primary;
       border-width: 1px;
+      border-style: solid;
       &::placeholder {
         color: $font-secondary;
       }
+      &:hover {
+        cursor: pointer;
+        border-color: $border-secondary;
+      }
+      &:focus {
+        outline-color: $border-secondary;
+      }
+    }
+    &__error-message {
+      color: $strawberry-red;
+      font-size: 0.8125rem;
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-weight: 500;
     }
   }
 }

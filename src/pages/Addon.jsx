@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactComponent as CheckIcon } from "../assets/images/icon-checkmark.svg";
+import AddonCard from "../components/AddonCard/AddonCard";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
-const Addon = () => {
+const Addon = ({ prevStep, addons, handleAddons, yearlyChecked }) => {
+  const [addonsArray, setAddonsArray] = useState([...addons]);
+
+  // const handleChange = (e) => {
+  //   console.log(e.target.checked);
+  //   const targetElement = e.target;
+  //   if (targetElement.checked) {
+  //     console.log(
+  //       parseInt(
+  //         targetElement
+  //           .closest(".card-wrapper")
+  //           .querySelector(".card__price__content")
+  //           .innerHTML.split("$")[1]
+  //           .split("/")[0]
+  //       )
+  //     );
+  //   }
+  // };
+
+  useEffect(() => {
+    console.log(addonsArray);
+  }, [addonsArray]);
+
+  const handleCheck = (isChecked, id) => {
+    console.log("hello");
+    const newState = addonsArray.map((addon) => {
+      if (addon.id === id) {
+        console.log(addon);
+        return { ...addon, checked: isChecked };
+      }
+      return addon;
+    });
+
+    setAddonsArray(newState);
+  };
+
+  const handleClick = () => {
+    console.log(addonsArray);
+    handleAddons(addonsArray);
+  };
   return (
     <section className="section section--addon">
       <Header
@@ -10,60 +51,26 @@ const Addon = () => {
         description="Add-ons help enhance your gaming experience."
       />
       <div className="container container--vertical">
-        <label className="card-wrapper card-wrapper--addon" htmlFor="check-1">
-          <input type={"checkbox"} className="check" id="check-1" />
-          <div className="card card--addon">
-            {/* <div className="checkbox-wrapper"> */}
-            <div className="checkbox">
-              <CheckIcon />
-            </div>
-            {/* </div> */}
-            <div className="card__type">
-              <h2 className="card__type__title">Online service</h2>
-              <p className="card__type__text">Access to multiplayer games</p>
-            </div>
-            <div className="card__price">
-              <span className="card__price__content">+$10/year</span>
-            </div>
-          </div>
-        </label>
-
-        <label className="card-wrapper card-wrapper--addon" htmlFor="check-2">
-          <input type={"checkbox"} className="check" id="check-2" />
-          <div className="card card--addon">
-            <div className="checkbox-wrapper">
-              <div className="checkbox">
-                <CheckIcon />
-              </div>
-            </div>
-            <div className="card__type">
-              <h2 className="card__type__title">Online service</h2>
-              <p className="card__type__text">Access to multiplayer games</p>
-            </div>
-            <div className="card__price">
-              <span className="card__price__content">+$10/year</span>
-            </div>
-          </div>
-        </label>
-
-        <label className="card-wrapper card-wrapper--addon" htmlFor="check-3">
-          <input type={"checkbox"} className="check" id="check-3" />
-          <div className="card card--addon">
-            <div className="checkbox-wrapper">
-              <div className="checkbox">
-                <CheckIcon />
-              </div>
-            </div>
-            <div className="card__type">
-              <h2 className="card__type__title">Online service</h2>
-              <p className="card__type__text">Access to multiplayer games</p>
-            </div>
-            <div className="card__price">
-              <span className="card__price__content">+$10/year</span>
-            </div>
-          </div>
-        </label>
+        {addonsArray.map((addon) => {
+          return (
+            <AddonCard
+              key={addon.id}
+              id={addon.id}
+              title={addon.name}
+              price={yearlyChecked ? addon.price * 10 : addon.price}
+              description={addon.description}
+              checked={addon.checked}
+              handleCheck={handleCheck}
+              yearlyChecked={yearlyChecked}
+            />
+          );
+        })}
       </div>
+      <Footer
+        path={"/form/addon"}
+        prevStep={prevStep}
+        handleClick={handleClick}
+      />
     </section>
   );
 };
