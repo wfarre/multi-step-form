@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
 const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
-  const params = useParams();
-  console.log(params);
-
   const planPrice = userInfo.plan.price;
-  // const [addonPrice, setAddonPrice] = useState([]);
   const getAddonPrice = () => {
     const addonPrice = [];
 
@@ -18,7 +13,6 @@ const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
       }
     });
     return addonPrice;
-    // setAddonPrice(addonPrice);
   };
   const addonPrice = getAddonPrice();
 
@@ -33,13 +27,8 @@ const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
     return total;
   };
 
-  // const handleSubmit = () => {
-  //   handleSubmit();
-  // };
-
   return (
     <div>
-      {/* <main> */}
       <section className="section section--summary">
         <Header
           title="Finishing up"
@@ -92,7 +81,6 @@ const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
           </span>
         </footer>
       </section>
-      {/* </main> */}
       <Footer
         path={userInfo.step}
         prevStep={prevStep}

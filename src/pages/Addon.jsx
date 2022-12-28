@@ -1,27 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ReactComponent as CheckIcon } from "../assets/images/icon-checkmark.svg";
 import AddonCard from "../components/AddonCard/AddonCard";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
 const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
   const [addonsArray, setAddonsArray] = useState([...addons]);
-
-  // const handleChange = (e) => {
-  //   console.log(e.target.checked);
-  //   const targetElement = e.target;
-  //   if (targetElement.checked) {
-  //     console.log(
-  //       parseInt(
-  //         targetElement
-  //           .closest(".card-wrapper")
-  //           .querySelector(".card__price__content")
-  //           .innerHTML.split("$")[1]
-  //           .split("/")[0]
-  //       )
-  //     );
-  //   }
-  // };
 
   useEffect(() => {
     console.log(addonsArray);
@@ -46,7 +29,6 @@ const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
   };
   return (
     <div>
-      {/* <main> */}
       <section className="section section--addon">
         <Header
           title="Pick add-ons"
@@ -69,7 +51,6 @@ const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
           })}
         </div>
       </section>
-      {/* </main> */}
       <Footer path={step} prevStep={prevStep} handleClick={handleClick} />
     </div>
   );

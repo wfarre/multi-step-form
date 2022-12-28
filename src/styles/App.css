@@ -14,7 +14,7 @@
   height: 230px;
   margin-top: 45px;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .sidebar__content {
     flex-direction: row;
     justify-content: center;
@@ -35,7 +35,7 @@
   margin-left: 34px;
   margin-left: 12.4%;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .sidebar__content__element {
     margin: 0;
     column-gap: 0;
@@ -64,7 +64,7 @@
   color: hsl(231deg, 11%, 63%);
   font-size: 13px;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .sidebar__content__element__sub {
     display: none;
   }
@@ -76,7 +76,7 @@
   text-transform: uppercase;
   font-size: 14px;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .sidebar__content__element__txt {
     display: none;
   }
@@ -86,7 +86,7 @@
     min-width: 215px;
   }
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .sidebar {
     width: 100vw;
     height: 170px;
@@ -105,7 +105,7 @@
   background-size: cover;
   z-index: -1;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .sidebar__bg {
     background-image: url("../assets/images/bg-sidebar-mobile.svg");
   }
@@ -323,7 +323,7 @@
   margin-bottom: 22px;
   color: hsl(213deg, 96%, 18%);
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .header__title {
     margin-bottom: 1rem;
   }
@@ -335,7 +335,7 @@
   font-weight: 400;
   color: hsl(231deg, 11%, 63%);
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .header {
     margin-bottom: 24px;
   }
@@ -346,7 +346,7 @@
   display: flex;
   justify-content: space-between;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .container {
     flex-direction: column;
   }
@@ -375,7 +375,7 @@
   display: flex;
   justify-content: space-between;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .footer .container {
     flex-direction: row;
     background-color: hsl(0deg, 0%, 100%);
@@ -540,7 +540,7 @@
     min-width: auto;
   }
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .App {
     flex-direction: column;
     align-items: center;
@@ -559,7 +559,7 @@ main {
   height: calc(100% - 45px - 18px);
   padding: 45px 0 0 0;
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   main {
     width: 100vw;
     height: 100vh;
@@ -571,7 +571,7 @@ main {
   display: none;
 }
 
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .section {
     background-color: hsl(0deg, 0%, 100%);
     border-radius: 15px;
@@ -604,7 +604,7 @@ main {
   left: 50%;
   transform: translateX(-50%);
 }
-@media all and (max-width: 420px) {
+@media all and (max-width: 600px) {
   .section--thankyou {
     height: 400px;
   }

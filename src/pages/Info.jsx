@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, redirect, useNavigate } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import {
@@ -21,11 +20,7 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     phone: "",
   });
 
-  const navigate = useNavigate();
-
   const [error, setError] = useState(false);
-
-  const { formIsValid, setFormIsValid } = useState(false);
 
   const handleChangeName = (e) => {
     setUserInfo({ ...userInfo, name: e.target.value.trimStart() });
@@ -45,23 +40,13 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     console.log(checkPhoneNumberIsValid(e.target.value));
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(e);
-  // };
-
   const checkIfInputIsEmpty = (input, inputName) => {
     const targetElement = document.getElementById(inputName);
     const targetParentElement = targetElement.closest(".form__element");
 
     console.log(input);
     if (input === "") {
-      // console.log("ola");
       targetParentElement.classList.add("error");
-      // formElement.classList.add("error");
-      // const inputId = input.split(".");
-      // console.log(inputId);
-      // console.log(inputName);
       switch (inputName) {
         case "name":
           console.log("name");
@@ -164,16 +149,9 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     };
 
     setError(checkIfError());
-
-    // handleError(checkIfError());
   }, [userInfoError]);
 
-  // console.log(userInfoError);
-
   const checkForm = () => {
-    // checkIfInputIsEmpty(userInfo.name, "name");
-    // checkIfInputIsEmpty(userInfo.email, "email");
-    // checkIfInputIsEmpty(userInfo.phone, "phone");
     const errors = {
       name: "",
       email: "",
@@ -263,24 +241,17 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
 
     if (checkForm()) {
       handleInfo(userInfo);
-      // nextPage();
     }
   };
 
   return (
     <div>
-      {/* <main> */}
       <section className="section section--info">
         <Header
           title="Personal info"
           description="Please provide your name, email address, and phone number."
         />
-        <form
-          className="form"
-          method="post"
-          // onSubmit={handleSubmit}
-          // action="/form/plan"
-        >
+        <form className="form" method="post">
           <div className="form__element">
             <label className="form__element__label" htmlFor="name">
               Name
@@ -336,26 +307,15 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
               onBlur={(e) =>
                 handleBlur(e, userInfo.phone, checkPhoneNumberIsValid)
               }
-              // onBlur={console.log(checkPhoneNumberIsValid(userInfo.phone))}
-              // required
             />
             <span className="form__element__error-message">
               {userInfoError.phone}
             </span>
           </div>
-
-          {/* <input type="submit" value="Submit" onSubmit={handleSubmit}></input> */}
         </form>
       </section>
-      {/* </main> */}
 
-      {/* <Footer path={currentPage} /> */}
-      <Footer
-        path={step}
-        error={error}
-        // checkForm={checkForm}
-        handleClick={handleClick}
-      />
+      <Footer path={step} error={error} handleClick={handleClick} />
     </div>
   );
 };

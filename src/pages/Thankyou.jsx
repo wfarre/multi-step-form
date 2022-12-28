@@ -3,7 +3,6 @@ import { ReactComponent as Checkmark } from "../assets/images/icon-thank-you.svg
 
 const Thankyou = () => {
   return (
-    // <div>
     <section className="section section--thankyou">
       <header>
         <div className="logo-wrapper">
@@ -19,7 +18,6 @@ const Thankyou = () => {
         </p>
       </div>
     </section>
-    // </div>
   );
 };
 

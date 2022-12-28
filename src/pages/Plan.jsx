@@ -40,7 +40,6 @@ const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
       });
       return rightPrice;
     };
-    // const selectedCardPrice = getPrice();
 
     const newPrice = getPrice();
     setChoosenPlan({ ...choosenPlan, price: newPrice, yearly: yearlyChecked });
