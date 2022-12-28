@@ -1,16 +1,27 @@
 @use "../base/styles" as *;
 
 .btn {
+  position: relative;
   height: 48px;
   width: 120px;
   font-size: 1rem;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   color: $btn-font-primary;
   background-color: $btn-bg-primary;
   &:hover {
     cursor: pointer;
-    background-color: $btn-bg-secondary;
+
+    &:after {
+      content: "";
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: $bg-primary;
+      top: 0;
+      left: 0;
+      opacity: 0.1;
+    }
     color: $btn-font-secondary;
   }
 
@@ -19,5 +30,13 @@
     background-color: transparent;
     color: $btn-font-tertiary;
     text-align: left;
+    &:hover {
+      color: $btn-bg-primary;
+    }
+  }
+
+  &--confirm {
+    background-color: $btn-bg-secondary;
+    color: $btn-font-secondary;
   }
 }

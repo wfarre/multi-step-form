@@ -8,13 +8,9 @@ import Info from "./pages/Info";
 import Addon from "./pages/Addon";
 import Plan from "./pages/Plan";
 import Summary from "./pages/Summary";
+import Thankyou from "./pages/Thankyou";
 
 function App() {
-  const location = useLocation();
-  const [currentPage, setCurrentPage] = useState();
-  const [pagename, setPagename] = useState([]);
-  const [error, setError] = useState(false);
-
   const [userInfo, setUserInfo] = useState({
     step: 1,
     name: "",
@@ -50,19 +46,6 @@ function App() {
     ],
   });
 
-  useEffect(() => {
-    setCurrentPage(location.pathname);
-    setPagename(location.pathname.split("/"));
-  }, [location]);
-
-  useEffect(() => {
-    console.log(userInfo);
-  }, [userInfo]);
-
-  const nextStep = () => {
-    setUserInfo({ ...userInfo, step: userInfo.step + 1 });
-  };
-
   const handleChoosePlan = (userPlan) => {
     setUserInfo({
       ...userInfo,
@@ -85,10 +68,6 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    console.log(userInfo.step);
-  }, [userInfo]);
-
   const prevStep = () => {
     if (userInfo.step === 1) {
       return;
@@ -100,9 +79,14 @@ function App() {
     setUserInfo({ ...userInfo, addons: addons, step: userInfo.step + 1 });
   };
 
+  const handleSubmit = () => {
+    console.log(userInfo);
+    setUserInfo({ ...userInfo, step: userInfo.step + 1 });
+  };
+
   return (
     <div className="App">
-      <Sidebar path={currentPage} pagename={pagename} />
+      <Sidebar path={userInfo.step} />
 
       <main>
         {/* <Outlet /> */}
@@ -114,6 +98,7 @@ function App() {
             email={userInfo.email}
             phone={userInfo.phone}
             handleInfo={handleInfo}
+            step={userInfo.step}
           />
         ) : userInfo.step === 2 ? (
           <Plan
@@ -121,6 +106,7 @@ function App() {
             prevStep={prevStep}
             plan={userInfo.plan}
             handleChoosePlan={handleChoosePlan}
+            step={userInfo.step}
           />
         ) : userInfo.step === 3 ? (
           <Addon
@@ -129,9 +115,17 @@ function App() {
             addons={userInfo.addons}
             handleAddons={handleAddons}
             yearlyChecked={userInfo.plan.yearly}
+            step={userInfo.step}
+          />
+        ) : userInfo.step === 4 ? (
+          <Summary
+            id="4"
+            prevStep={prevStep}
+            userInfo={userInfo}
+            handleSubmit={handleSubmit}
           />
         ) : (
-          <Summary id="4" prevStep={prevStep} userInfo={userInfo} />
+          <Thankyou id="5" />
         )}
 
         {/* <Footer path={currentPage} /> */}

@@ -1,64 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link, redirect } from "react-router-dom";
 
-const Footer = ({ path, handleClick, prevStep }) => {
+const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
   const [link, setLink] = useState("");
   const [backLink, setBackLink] = useState("");
-
-  // console.log(error);
-
-  // useEffect(
-  //   ({ prevStep }) => {
-  //     switch (path) {
-  //       case "/form/info":
-  //         setLink("/form/plan");
-  //         break;
-  //       case "/form/plan":
-  //         setLink("/form/addon");
-  //         setBackLink("/form/info");
-  //         break;
-  //       case "/form/addon":
-  //         setLink("/form/summary");
-  //         setBackLink("/form/plan");
-
-  //         break;
-  //       case "/form/summary":
-  //         setLink("/form/thankyou");
-  //         setBackLink("/form/addon");
-
-  //         break;
-
-  //       default:
-  //         break;
-  //     }
-  //   },
-  //   [path]
-  // );
-
-  // function handleSubmit(e) {
-  //   e.preventDefaul();
-  //   // checkForm();
-  //   console.log(e);
-  // }
+  console.log(path);
 
   return (
     <footer className="footer">
       <div className="container">
         {/* <Link to={backLink}> */}
+
         <button
           type="button"
           // className={path === "/form/info" ? "hidden" : "btn btn--back"}
-          className="btn btn--back"
+          className={path === 1 ? "transparent" : "btn btn--back"}
           onClick={prevStep}
         >
           Go back
         </button>
-        {/* </Link> */}
-        {/* <Link to={error ? path : link}> */}
-        <button type="button" className="btn" onClick={handleClick}>
-          {path === "/form/summary" ? "Comfirm" : "Next step"}
-        </button>
-        {/* </Link> */}
+        {path === 4 ? (
+          <button
+            type="submit"
+            className="btn btn--confirm"
+            onClick={handleSubmit}
+          >
+            Confirm
+          </button>
+        ) : (
+          <button type="button" className="btn" onClick={handleClick}>
+            Next step
+          </button>
+        )}
       </div>
     </footer>
   );

@@ -8,7 +8,7 @@ import {
   checkPhoneNumberIsValid,
 } from "../utils/validations";
 
-const Info = ({ nextPage, handleInfo, name, email, phone }) => {
+const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
   const [userInfo, setUserInfo] = useState({
     name: name,
     email: email,
@@ -269,6 +269,7 @@ const Info = ({ nextPage, handleInfo, name, email, phone }) => {
 
   return (
     <div>
+      {/* <main> */}
       <section className="section section--info">
         <Header
           title="Personal info"
@@ -344,16 +345,17 @@ const Info = ({ nextPage, handleInfo, name, email, phone }) => {
           </div>
 
           {/* <input type="submit" value="Submit" onSubmit={handleSubmit}></input> */}
-          <Footer
-            path={"/form/info"}
-            error={error}
-            // checkForm={checkForm}
-            handleClick={handleClick}
-          />
         </form>
       </section>
+      {/* </main> */}
 
       {/* <Footer path={currentPage} /> */}
+      <Footer
+        path={step}
+        error={error}
+        // checkForm={checkForm}
+        handleClick={handleClick}
+      />
     </div>
   );
 };

@@ -1,3 +1,6 @@
+@use "../base/styles" as *;
+@use "../utils//breakpoints" as *;
+
 .footer {
   position: absolute;
   width: 100%;
@@ -7,5 +10,19 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    @include mobile-only {
+      flex-direction: row;
+      background-color: $bg-primary;
+      width: calc(100vw - 26px * 2);
+      height: 75px;
+      align-items: center;
+      padding: 0 26px;
+      // margin-top: 24px;
+    }
   }
+  // @include mobile-only {
+  //   background-color: $bg-primary;
+  //   width: 100vw;
+  //   height: 75px;
+  // }
 }

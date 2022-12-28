@@ -4,7 +4,7 @@ import AddonCard from "../components/AddonCard/AddonCard";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
-const Addon = ({ prevStep, addons, handleAddons, yearlyChecked }) => {
+const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
   const [addonsArray, setAddonsArray] = useState([...addons]);
 
   // const handleChange = (e) => {
@@ -45,33 +45,33 @@ const Addon = ({ prevStep, addons, handleAddons, yearlyChecked }) => {
     handleAddons(addonsArray);
   };
   return (
-    <section className="section section--addon">
-      <Header
-        title="Pick add-ons"
-        description="Add-ons help enhance your gaming experience."
-      />
-      <div className="container container--vertical">
-        {addonsArray.map((addon) => {
-          return (
-            <AddonCard
-              key={addon.id}
-              id={addon.id}
-              title={addon.name}
-              price={yearlyChecked ? addon.price * 10 : addon.price}
-              description={addon.description}
-              checked={addon.checked}
-              handleCheck={handleCheck}
-              yearlyChecked={yearlyChecked}
-            />
-          );
-        })}
-      </div>
-      <Footer
-        path={"/form/addon"}
-        prevStep={prevStep}
-        handleClick={handleClick}
-      />
-    </section>
+    <div>
+      {/* <main> */}
+      <section className="section section--addon">
+        <Header
+          title="Pick add-ons"
+          description="Add-ons help enhance your gaming experience."
+        />
+        <div className="container container--vertical">
+          {addonsArray.map((addon) => {
+            return (
+              <AddonCard
+                key={addon.id}
+                id={addon.id}
+                title={addon.name}
+                price={yearlyChecked ? addon.price * 10 : addon.price}
+                description={addon.description}
+                checked={addon.checked}
+                handleCheck={handleCheck}
+                yearlyChecked={yearlyChecked}
+              />
+            );
+          })}
+        </div>
+      </section>
+      {/* </main> */}
+      <Footer path={step} prevStep={prevStep} handleClick={handleClick} />
+    </div>
   );
 };
 

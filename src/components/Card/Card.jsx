@@ -35,16 +35,20 @@ const Card = ({
       />
       <div className="card">
         <div className="logo-wrapper">{icon}</div>
-        <div className="card__type">
-          <h2 className="card__type__title">{title}</h2>
-          <p className="card__type__price">
-            ${yearlyChecked ? price * 10 : price}/
-            {yearlyChecked ? "year" : "month"}
-          </p>
+        <div className="card__info">
+          <div className="card__type">
+            <h2 className="card__type__title">{title}</h2>
+            <p className="card__type__price">
+              ${yearlyChecked ? price * 10 : price}/
+              {yearlyChecked ? "year" : "month"}
+            </p>
+          </div>
+          <span
+            className={yearlyChecked ? "card__promo " : "card__promo hidden"}
+          >
+            2 month free
+          </span>
         </div>
-        <span className={yearlyChecked ? "card__promo " : "card__promo hidden"}>
-          2 month free
-        </span>
       </div>
     </label>
   );

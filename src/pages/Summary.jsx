@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
-const Summary = ({ prevStep, userInfo }) => {
+const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
   const params = useParams();
   console.log(params);
 
@@ -33,59 +33,72 @@ const Summary = ({ prevStep, userInfo }) => {
     return total;
   };
 
-  return (
-    <section className="section section--summary">
-      <Header
-        title="Finishing up"
-        description="Double-check everything is OK before confirming."
-      />
-      <div className="summary-main">
-        <div className="container container--vertical">
-          <div className="plan">
-            <div className="plan__info">
-              <h2 className="plan__info__title">
-                {userInfo.plan.name} (
-                {userInfo.plan.yearly ? "Yearly" : "Monthly"})
-              </h2>
-              <a href="" className="plan__info__change">
-                Change
-              </a>
-            </div>
-            <span className="plan__price">
-              ${userInfo.plan.price}/{userInfo.plan.yearly ? "year" : "mo"}
-            </span>
-          </div>
+  // const handleSubmit = () => {
+  //   handleSubmit();
+  // };
 
-          <div className="addons">
-            <ul className="addon-list">
-              {userInfo.addons.map((addon) => {
-                if (addon.checked) {
-                  return (
-                    <li className="addon" key={addon.id}>
-                      <p className="addon__name">{addon.name}</p>
-                      <span className="addon__price">
-                        +$
-                        {userInfo.plan.yearly ? addon.price * 10 : addon.price}/
-                        {userInfo.plan.yearly ? "year" : "mo"}
-                      </span>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
+  return (
+    <div>
+      {/* <main> */}
+      <section className="section section--summary">
+        <Header
+          title="Finishing up"
+          description="Double-check everything is OK before confirming."
+        />
+        <div className="summary-main">
+          <div className="container container--vertical">
+            <div className="plan">
+              <div className="plan__info">
+                <h2 className="plan__info__title">
+                  {userInfo.plan.name} (
+                  {userInfo.plan.yearly ? "Yearly" : "Monthly"})
+                </h2>
+                <a href="" className="plan__info__change">
+                  Change
+                </a>
+              </div>
+              <span className="plan__price">
+                ${userInfo.plan.price}/{userInfo.plan.yearly ? "year" : "mo"}
+              </span>
+            </div>
+
+            <div className="addons">
+              <ul className="addon-list">
+                {userInfo.addons.map((addon) => {
+                  if (addon.checked) {
+                    return (
+                      <li className="addon" key={addon.id}>
+                        <p className="addon__name">{addon.name}</p>
+                        <span className="addon__price">
+                          +$
+                          {userInfo.plan.yearly
+                            ? addon.price * 10
+                            : addon.price}
+                          /{userInfo.plan.yearly ? "year" : "mo"}
+                        </span>
+                      </li>
+                    );
+                  }
+                })}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
 
-      <footer className="section__footer">
-        <p className="total-title">Total(per month)</p>
-        <span className="total-price">
-          ${getTotal()}/{userInfo.plan.yearly ? "year" : "mo"}
-        </span>
-      </footer>
-
-      <Footer path={"/form/summary"} prevStep={prevStep} />
-    </section>
+        <footer className="section__footer">
+          <p className="total-title">Total(per month)</p>
+          <span className="total-price">
+            ${getTotal()}/{userInfo.plan.yearly ? "year" : "mo"}
+          </span>
+        </footer>
+      </section>
+      {/* </main> */}
+      <Footer
+        path={userInfo.step}
+        prevStep={prevStep}
+        handleSubmit={handleSubmit}
+      />
+    </div>
   );
 };
 

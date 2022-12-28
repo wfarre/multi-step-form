@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const Sidebar = ({ path, pagename }) => {
+const Sidebar = ({ path }) => {
+  console.log(path);
   const listSidebar = [
     {
       index: "1",
@@ -28,15 +29,6 @@ const Sidebar = ({ path, pagename }) => {
     },
   ];
 
-  const [currentPage, setCurrentPage] = useState("");
-
-  useEffect(() => {
-    if (pagename !== undefined) {
-      console.log(pagename[2]);
-      setCurrentPage(pagename[2]);
-    }
-  }, [pagename]);
-
   return (
     <aside className="sidebar">
       <div className="sidebar__bg"></div>
@@ -47,7 +39,7 @@ const Sidebar = ({ path, pagename }) => {
             <li key={item.index} className="sidebar__content__element">
               <span
                 className={
-                  currentPage === item.page
+                  path === parseInt(item.index)
                     ? "sidebar__content__element__index selected"
                     : "sidebar__content__element__index"
                 }

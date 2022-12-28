@@ -1,4 +1,5 @@
 @use "../base/styles" as *;
+@use "../utils/breakpoints" as *;
 
 .header {
   position: relative;
@@ -8,9 +9,17 @@
     @include text($main-title-size, 700);
     margin-bottom: 22px;
     color: $font-primary;
+
+    @include mobile-only {
+      margin-bottom: 1rem;
+    }
   }
   &__subtitle {
     width: fit-content;
     @include main-text;
+  }
+
+  @include mobile-only {
+    margin-bottom: 24px;
   }
 }

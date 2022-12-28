@@ -1,4 +1,5 @@
 @use "../base/styles" as *;
+@use "../utils/breakpoints" as *;
 
 .sidebar {
   position: relative;
@@ -9,12 +10,24 @@
   min-width: 274px;
 
   border-radius: 15px 0 0 15px;
+
   &__content {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     height: 230px;
     margin-top: 45px;
+
+    @include mobile-only {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100px;
+      padding: 0;
+      margin-top: 0;
+      gap: 16px;
+    }
 
     &__element {
       display: grid;
@@ -26,6 +39,11 @@
       column-gap: 18px;
       margin-left: 34px;
       margin-left: 12.4%;
+
+      @include mobile-only {
+        margin: 0;
+        column-gap: 0;
+      }
 
       &__index {
         grid-area: index;
@@ -54,6 +72,10 @@
         grid-area: sub;
         color: $font-secondary;
         font-size: 13px;
+
+        @include mobile-only {
+          display: none;
+        }
       }
       &__txt {
         grid-area: text;
@@ -62,8 +84,23 @@
         color: hsl(0, 0%, 100%);
         text-transform: uppercase;
         font-size: 14px;
+        @include mobile-only {
+          display: none;
+        }
       }
     }
+  }
+
+  @include tablet-only() {
+    min-width: 215px;
+  }
+
+  @include mobile-only {
+    width: 100vw;
+    height: 170px;
+    min-width: auto;
+    // margin-left: -50px;
+    border-radius: 0;
   }
 }
 
@@ -76,4 +113,8 @@
   background-image: url("../assets/images/bg-sidebar-desktop.svg");
   background-size: cover;
   z-index: -1;
+
+  @include mobile-only {
+    background-image: url("../assets/images/bg-sidebar-mobile.svg");
+  }
 }

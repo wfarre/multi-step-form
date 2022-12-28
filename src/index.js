@@ -8,6 +8,7 @@ import Info from "./pages/Info";
 import Plan from "./pages/Plan";
 import Addon from "./pages/Addon";
 import Summary from "./pages/Summary";
+import Thankyou from "./pages/Thankyou";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "form/summary",
         element: <Summary />,
+      },
+      {
+        path: "form/thankyou",
+        element: <Thankyou />,
       },
     ],
   },

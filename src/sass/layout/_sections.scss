@@ -1,4 +1,5 @@
 @use "../base/styles" as *;
+@use "../utils/breakpoints" as *;
 
 .summary-main {
   background-color: $bg-tertiary;

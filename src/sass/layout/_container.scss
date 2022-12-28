@@ -1,11 +1,19 @@
 @use "../base/styles";
+@use "../utils/breakpoints" as *;
 
 .container {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @include mobile-only {
+    flex-direction: column;
+  }
   &--plan {
     flex-direction: row;
+    @include tablet-only {
+      flex-direction: column;
+      gap: 13px;
+    }
   }
   &--vertical {
     flex-direction: column;
