@@ -10,7 +10,8 @@
   }
   &--plan {
     flex-direction: row;
-    @include tablet-only {
+    gap: 13px;
+    @include mobile-only {
       flex-direction: column;
       gap: 13px;
     }
