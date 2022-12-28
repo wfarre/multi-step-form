@@ -319,6 +319,9 @@
   color: hsl(213deg, 96%, 18%);
   font-size: 0.8125rem;
 }
+.toggle-title--yearly {
+  color: hsl(231deg, 11%, 63%);
+}
 
 .header {
   position: relative;
@@ -560,6 +563,10 @@
     background-color: hsl(217deg, 100%, 97%);
     gap: 0;
     border-radius: 0;
+    transform: translate(0, 0);
+    top: 0;
+    left: 0;
+    height: auto;
   }
 }
 
@@ -572,7 +579,8 @@ main {
 @media all and (max-width: 625px) {
   main {
     width: 100vw;
-    height: 100vh;
+    height: auto;
+    min-height: calc(100vh - 18px - 155px);
     padding: 0;
   }
 }
@@ -587,8 +595,9 @@ main {
     border-radius: 15px;
     padding: 36px 26px 30px 26px;
     margin: 0 16px;
-    margin-top: -40px;
+    margin-top: -70px;
     box-shadow: 3px 16px 16px hsla(0deg, 0%, 58%, 0.2);
+    margin-bottom: 90px;
   }
 }
 .section--thankyou {

@@ -56,4 +56,8 @@
 .toggle-title {
   color: $font-primary;
   font-size: 0.8125rem;
+
+  &--yearly {
+    color: $bg-secondary;
+  }
 }

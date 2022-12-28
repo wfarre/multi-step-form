@@ -101,7 +101,7 @@ const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
             ></input>
             <span className="slider"></span>
           </label>
-          <h3 className="toggle-title">Yearly</h3>
+          <h3 className="toggle-title toggle-title--yearly">Yearly</h3>
         </div>
       </section>
       {/* </main> */}
