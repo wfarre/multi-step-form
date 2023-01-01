@@ -5,7 +5,7 @@ import { ReactComponent as IconAdvanced } from "../assets/images/icon-advanced.s
 import { ReactComponent as IconPro } from "../assets/images/icon-pro.svg";
 import { useState } from "react";
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer/Footer.jsx";
 
 const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
   const [yearlyChecked, setYearlyChecked] = useState(plan.yearly);

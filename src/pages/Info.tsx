@@ -1,5 +1,7 @@
+// @ts-ignore
+
 import React, { useEffect, useState } from "react";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header";
 import {
   checkEmailIsValid,
@@ -7,7 +9,15 @@ import {
   checkPhoneNumberIsValid,
 } from "../utils/validations";
 
-const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
+interface Props {
+  handleInfo: Function;
+  name: string;
+  email: string;
+  phone: string;
+  step: number;
+}
+
+const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
   const [userInfo, setUserInfo] = useState({
     name: name,
     email: email,
@@ -20,7 +30,7 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     phone: "",
   });
 
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const handleChangeName = (e) => {
     setUserInfo({ ...userInfo, name: e.target.value.trimStart() });
@@ -40,11 +50,17 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     console.log(checkPhoneNumberIsValid(e.target.value));
   };
 
-  const checkIfInputIsEmpty = (input, inputName) => {
-    const targetElement = document.getElementById(inputName);
-    const targetParentElement = targetElement.closest(".form__element");
+  const checkIfInputIsEmpty = (
+    input: string,
+    inputName: string
+  ): boolean | void => {
+    const targetElement: HTMLInputElement = document.getElementById(
+      inputName
+    ) as HTMLInputElement;
+    const targetParentElement: HTMLElement = targetElement.closest(
+      ".form__element"
+    ) as HTMLElement;
 
-    console.log(input);
     if (input === "") {
       targetParentElement.classList.add("error");
       switch (inputName) {
@@ -79,9 +95,17 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     }
   };
 
-  const checkIfInputIsNotValid = (elementToCheck, inputName, callback) => {
-    const targetElement = document.getElementById(inputName);
-    const targetParentElement = targetElement.closest(".form__element");
+  const checkIfInputIsNotValid = (
+    elementToCheck: string,
+    inputName: string,
+    callback: Function
+  ): boolean | void => {
+    const targetElement: HTMLInputElement = document.getElementById(
+      inputName
+    ) as HTMLInputElement;
+    const targetParentElement: HTMLElement = targetElement.closest(
+      ".form__element"
+    ) as HTMLElement;
 
     if (!callback(elementToCheck)) {
       targetParentElement.classList.add("error");
@@ -103,7 +127,9 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
           console.error("there is an error");
           break;
       }
-      return;
+      //double check originally:
+      //return;
+      return false;
     }
   };
 
@@ -138,19 +164,6 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
     }
   };
 
-  useEffect(() => {
-    const checkIfError = () => {
-      Object.keys(userInfoError).map((error) => {
-        if (userInfoError[error] !== "") {
-          return true;
-        }
-        return false;
-      });
-    };
-
-    setError(checkIfError());
-  }, [userInfoError]);
-
   const checkForm = () => {
     const errors = {
       name: "",
@@ -160,77 +173,85 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
 
     let formIsValid = true;
 
-    if (userInfo.name === "") {
-      const targetElement = document.getElementById("name");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.add("error");
+    const targetElements: HTMLInputElement[] = document.querySelectorAll(
+      ".form__element__input"
+    ) as unknown as HTMLInputElement[];
 
-      errors.name = "This is required";
-      formIsValid = false;
-    }
-    if (!checkNameIsValid(userInfo.name)) {
-      const targetElement = document.getElementById("name");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.add("error");
+    targetElements.forEach((targetElement) => {
+      const targetElementId = targetElement.id;
+      if (userInfo[targetElementId] === "") {
+        // const targetElement = document.getElementById("name");
+        const targetParentElement: HTMLElement = targetElement.closest(
+          ".form__element"
+        ) as HTMLElement;
+        targetParentElement.classList.add("error");
 
-      errors.name = "Invalid name";
-      formIsValid = false;
-    }
-    if (checkNameIsValid(userInfo.name)) {
-      const targetElement = document.getElementById("name");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.remove("error");
+        errors[targetElementId] = "This is required";
+        formIsValid = false;
+        return;
+      }
 
-      errors.name = "";
-    }
+      switch (targetElementId) {
+        case "name":
+          if (!checkNameIsValid(userInfo[targetElementId])) {
+            const targetParentElement: HTMLElement = targetElement.closest(
+              ".form__element"
+            ) as HTMLElement;
+            targetParentElement.classList.add("error");
 
-    if (userInfo.email === "") {
-      const targetElement = document.getElementById("email");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.add("error");
+            errors[targetElementId] = "Invalid name";
+            formIsValid = false;
+          }
+          if (checkNameIsValid(userInfo[targetElementId])) {
+            const targetParentElement: HTMLElement = targetElement.closest(
+              ".form__element"
+            ) as HTMLElement;
+            targetParentElement.classList.remove("error");
 
-      errors.email = "This is required";
-      formIsValid = false;
-    }
-    if (!checkEmailIsValid(userInfo.email)) {
-      const targetElement = document.getElementById("email");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.add("error");
+            errors.name = "";
+          }
 
-      errors.email = "Invalid email";
-      formIsValid = false;
-    }
-    if (checkEmailIsValid(userInfo.email)) {
-      const targetElement = document.getElementById("email");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.remove("error");
+          break;
+        case "email":
+          if (!checkEmailIsValid(userInfo[targetElementId])) {
+            const targetParentElement: HTMLElement = targetElement.closest(
+              ".form__element"
+            ) as HTMLElement;
+            targetParentElement.classList.add("error");
 
-      errors.email = "";
-    }
+            errors[targetElementId] = "Invalid email";
+            formIsValid = false;
+          }
+          if (checkEmailIsValid(userInfo[targetElementId])) {
+            const targetParentElement: HTMLElement = targetElement.closest(
+              ".form__element"
+            ) as HTMLElement;
+            targetParentElement.classList.remove("error");
 
-    if (userInfo.phone === "") {
-      const targetElement = document.getElementById("phone");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.add("error");
+            errors.email = "";
+          }
+          break;
+        case "phone":
+          if (!checkPhoneNumberIsValid(userInfo[targetElementId])) {
+            const targetParentElement: HTMLElement = targetElement.closest(
+              ".form__element"
+            ) as HTMLElement;
+            targetParentElement.classList.add("error");
 
-      errors.phone = "This is required";
-      formIsValid = false;
-    }
-    if (!checkPhoneNumberIsValid(userInfo.phone)) {
-      const targetElement = document.getElementById("phone");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.add("error");
+            errors[targetElementId] = "Invalid phone number";
+            formIsValid = false;
+          }
+          if (checkPhoneNumberIsValid(userInfo[targetElementId])) {
+            const targetParentElement: HTMLElement = targetElement.closest(
+              ".form__element"
+            ) as HTMLElement;
+            targetParentElement.classList.remove("error");
 
-      errors.phone = "Phone number invalid";
-      formIsValid = false;
-    }
-    if (checkPhoneNumberIsValid(userInfo.phone)) {
-      const targetElement = document.getElementById("phone");
-      const targetParentElement = targetElement.closest(".form__element");
-      targetParentElement.classList.remove("error");
-
-      errors.phone = "";
-    }
+            errors.phone = "";
+          }
+          break;
+      }
+    });
 
     setUserInfoError(errors);
     return formIsValid;
@@ -315,7 +336,7 @@ const Info = ({ nextPage, handleInfo, name, email, phone, step }) => {
         </form>
       </section>
 
-      <Footer path={step} error={error} handleClick={handleClick} />
+      <Footer path={step} handleClick={handleClick} />
     </div>
   );
 };

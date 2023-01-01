@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header";
 
 const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {

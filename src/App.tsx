@@ -1,16 +1,16 @@
+// @ts-ignore
+
 import "./styles/App.css";
 import Sidebar from "./components/Sidebar/Sidebar";
-import Footer from "./components/Footer/Footer";
 
-import { useEffect, useState } from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
-import Info from "./pages/Info";
+import React, { useState } from "react";
+import Info from "./pages/Info.tsx";
 import Addon from "./pages/Addon";
 import Plan from "./pages/Plan";
 import Summary from "./pages/Summary";
 import Thankyou from "./pages/Thankyou";
 
-function App() {
+const App: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
     step: 1,
     name: "",
@@ -89,10 +89,19 @@ function App() {
       <Sidebar path={userInfo.step} />
 
       <main>
+        {/* <Info
+          // id="1"
+          // nextPage={nextStep}
+          name={userInfo.name}
+          email={userInfo.email}
+          phone={userInfo.phone}
+          handleInfo={handleInfo}
+          step={userInfo.step}
+        /> */}
         {/* <Outlet /> */}
         {userInfo.step === 1 ? (
           <Info
-            id="1"
+            // id="1"
             // nextPage={nextStep}
             name={userInfo.name}
             email={userInfo.email}
@@ -102,7 +111,7 @@ function App() {
           />
         ) : userInfo.step === 2 ? (
           <Plan
-            id="3"
+            // id="3"
             prevStep={prevStep}
             plan={userInfo.plan}
             handleChoosePlan={handleChoosePlan}
@@ -110,7 +119,7 @@ function App() {
           />
         ) : userInfo.step === 3 ? (
           <Addon
-            id="2"
+            // id="2"
             prevStep={prevStep}
             addons={userInfo.addons}
             handleAddons={handleAddons}
@@ -119,19 +128,18 @@ function App() {
           />
         ) : userInfo.step === 4 ? (
           <Summary
-            id="4"
+            // id="4"
             prevStep={prevStep}
             userInfo={userInfo}
             handleSubmit={handleSubmit}
+            step={userInfo.step}
           />
         ) : (
-          <Thankyou id="5" />
+          <Thankyou />
         )}
-
-        {/* <Footer path={currentPage} /> */}
       </main>
     </div>
   );
-}
+};
 
 export default App;

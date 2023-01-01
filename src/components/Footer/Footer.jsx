@@ -1,5 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link, redirect } from "react-router-dom";
+
+// interface FooterProps {
+//   path: number;
+//   handleClick: Function;
+//   prevStep?: Function;
+//   handleSubmit?: Function;
+// }
 
 const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
   const [link, setLink] = useState("");
@@ -15,7 +22,7 @@ const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
           type="button"
           // className={path === "/form/info" ? "hidden" : "btn btn--back"}
           className={path === 1 ? "transparent" : "btn btn--back"}
-          onClick={prevStep}
+          onClick={() => prevStep()}
         >
           Go back
         </button>
@@ -23,12 +30,12 @@ const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
           <button
             type="submit"
             className="btn btn--confirm"
-            onClick={handleSubmit}
+            onClick={() => handleSubmit()}
           >
             Confirm
           </button>
         ) : (
-          <button type="button" className="btn" onClick={handleClick}>
+          <button type="button" className="btn" onClick={(e) => handleClick(e)}>
             Next step
           </button>
         )}

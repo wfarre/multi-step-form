@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddonCard from "../components/AddonCard/AddonCard";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer/Footer.jsx";
 import Header from "../components/Header/Header";
 
 const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
