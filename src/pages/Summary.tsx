@@ -8,6 +8,7 @@ interface SummaryProps {
   userInfo: User;
   handleSubmit: Function;
   step: number;
+  handleChangePlan: Function;
 }
 
 const Summary: React.FC<SummaryProps> = ({
@@ -15,6 +16,7 @@ const Summary: React.FC<SummaryProps> = ({
   userInfo,
   handleSubmit,
   step,
+  handleChangePlan,
 }) => {
   const planPrice: number = userInfo.plan.price;
 
@@ -58,9 +60,12 @@ const Summary: React.FC<SummaryProps> = ({
                   {userInfo.plan.name} (
                   {userInfo.plan.yearly ? "Yearly" : "Monthly"})
                 </h2>
-                <a href="" className="plan__info__change">
+                <button
+                  className="plan__info__change btn--change"
+                  onClick={() => handleChangePlan()}
+                >
                   Change
-                </a>
+                </button>
               </div>
               <span className="plan__price">
                 ${userInfo.plan.price}/{userInfo.plan.yearly ? "year" : "mo"}
@@ -84,7 +89,7 @@ const Summary: React.FC<SummaryProps> = ({
                       </li>
                     );
                   }
-                  return;
+                  return false;
                 })}
               </ul>
             </div>

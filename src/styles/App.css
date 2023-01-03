@@ -645,4 +645,15 @@ main {
   visibility: hidden;
 }
 
+.btn--change {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+}
+.btn--change:hover {
+  color: hsl(213deg, 96%, 18%);
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=App.css.map */

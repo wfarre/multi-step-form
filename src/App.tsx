@@ -99,6 +99,10 @@ const App: React.FC = () => {
     setUserInfo({ ...userInfo, step: userInfo.step + 1 });
   };
 
+  const handleChangePlan = () => {
+    setUserInfo({ ...userInfo, step: 2 });
+  };
+
   return (
     <div className="App">
       <Sidebar path={userInfo.step} />
@@ -148,6 +152,7 @@ const App: React.FC = () => {
             userInfo={userInfo}
             handleSubmit={handleSubmit}
             step={userInfo.step}
+            handleChangePlan={handleChangePlan}
           />
         ) : (
           <Thankyou />

@@ -138,3 +138,14 @@ main {
 .transparent {
   visibility: hidden;
 }
+
+.btn--change {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  &:hover {
+    color: $font-primary;
+    cursor: pointer;
+  }
+}

@@ -36,16 +36,26 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
 
   // const [error, setError] = useState(false);
 
+  /**
+   * update userInfo when user modifies name input
+   * @param e
+   */
   const handleChangeName = (e: any) => {
     setUserInfo({ ...userInfo, name: e.target.value.trimStart() });
     checkNameIsValid(e.target.value);
   };
-
+  /**
+   * update userInfo when user modifies email input
+   * @param e
+   */
   const handleChangeEmail = (e: any) => {
     setUserInfo({ ...userInfo, email: e.target.value.trimStart() });
     checkEmailIsValid(e.target.value);
   };
-
+  /**
+   * update userInfo when user modifies phone number input
+   * @param e
+   */
   const handleChangePhone = (e: any) => {
     setUserInfo({ ...userInfo, phone: e.target.value });
     checkPhoneNumberIsValid(e.target.value);
@@ -320,7 +330,6 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
               onChange={handleChangeName}
               onBlur={(e) => handleBlur(e, userInfo.name, checkNameIsValid)}
               value={userInfo.name}
-              // required
               maxLength={30}
             />
             <span className="form__element__error-message">
@@ -340,7 +349,6 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
               onChange={handleChangeEmail}
               onBlur={(e) => handleBlur(e, userInfo.email, checkEmailIsValid)}
               value={userInfo.email}
-              // required
               maxLength={30}
             />
             <span className="form__element__error-message">
