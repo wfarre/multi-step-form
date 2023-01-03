@@ -1,7 +1,19 @@
 import React, { useState } from "react";
-import { ReactComponent as CheckIcon } from "../../assets/images/icon-checkmark.svg";
+// import { ReactComponent as CheckIcon } from "../../assets/images/icon-checkmark.svg";
+const CheckIcon: string =
+  require("../../assets/images/icon-checkmark.svg").default;
 
-const AddonCard = ({
+interface AddonCardProps {
+  handleCheck: Function;
+  title: string;
+  description: string;
+  price: number;
+  id: string;
+  checked: boolean;
+  yearlyChecked: boolean;
+}
+
+const AddonCard: React.FC<AddonCardProps> = ({
   handleCheck,
   title,
   description,

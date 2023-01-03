@@ -1,6 +1,11 @@
 import React from "react";
 
-const Header = ({ title, description }) => {
+interface HeaderProps {
+  title: string;
+  description: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ title, description }) => {
   return (
     <header className="header">
       <h1 className="header__title">{title}</h1>

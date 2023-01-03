@@ -1,17 +1,34 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AddonCard from "../components/AddonCard/AddonCard";
-import Footer from "../components/Footer/Footer.jsx";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
-const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
+export interface AddonObject {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  checked: boolean;
+}
+
+interface AddonProps {
+  prevStep: Function;
+  addons: AddonObject[];
+  handleAddons: Function;
+  yearlyChecked: boolean;
+  step: number;
+}
+
+const Addon: React.FC<AddonProps> = ({
+  prevStep,
+  addons,
+  handleAddons,
+  yearlyChecked,
+  step,
+}) => {
   const [addonsArray, setAddonsArray] = useState([...addons]);
 
-  useEffect(() => {
-    console.log(addonsArray);
-  }, [addonsArray]);
-
-  const handleCheck = (isChecked, id) => {
-    console.log("hello");
+  const handleCheck = (isChecked: boolean, id: string): void => {
     const newState = addonsArray.map((addon) => {
       if (addon.id === id) {
         console.log(addon);
@@ -23,10 +40,10 @@ const Addon = ({ prevStep, addons, handleAddons, yearlyChecked, step }) => {
     setAddonsArray(newState);
   };
 
-  const handleClick = () => {
-    console.log(addonsArray);
+  const handleClick = (): void => {
     handleAddons(addonsArray);
   };
+
   return (
     <div>
       <section className="section section--addon">

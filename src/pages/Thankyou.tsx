@@ -1,12 +1,15 @@
 import React from "react";
-import { ReactComponent as Checkmark } from "../assets/images/icon-thank-you.svg";
+// import { ReactComponent as Checkmark } from "../assets/images/icon-thank-you.svg";
+const Checkmark: string =
+  require("../assets/images/icon-thank-you.svg").default;
 
-const Thankyou = () => {
+const Thankyou: React.FC = () => {
   return (
     <section className="section section--thankyou">
       <header>
         <div className="logo-wrapper">
-          <Checkmark className="logo" />
+          {/* <Checkmark className="logo" /> */}
+          <img src={Checkmark} alt="" className="logo"></img>
         </div>
         <h1 className="section__header__title">Thank you</h1>
       </header>

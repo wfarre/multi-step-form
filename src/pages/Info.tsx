@@ -1,7 +1,5 @@
-// @ts-ignore
-
-import React, { useEffect, useState } from "react";
-import Footer from "../components/Footer/Footer.jsx";
+import React, { useState } from "react";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 import {
   checkEmailIsValid,
@@ -17,14 +15,20 @@ interface Props {
   step: number;
 }
 
+interface UserInfo {
+  name: string;
+  email: string;
+  phone: string;
+}
+
 const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useState<any>({
     name: name,
     email: email,
     phone: phone,
   });
 
-  const [userInfoError, setUserInfoError] = useState({
+  const [userInfoError, setUserInfoError] = useState<any>({
     name: "",
     email: "",
     phone: "",
@@ -32,24 +36,28 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
 
   // const [error, setError] = useState(false);
 
-  const handleChangeName = (e) => {
+  const handleChangeName = (e: any) => {
     setUserInfo({ ...userInfo, name: e.target.value.trimStart() });
     checkNameIsValid(e.target.value);
-    console.log(checkNameIsValid(e.target.value));
   };
 
-  const handleChangeEmail = (e) => {
+  const handleChangeEmail = (e: any) => {
     setUserInfo({ ...userInfo, email: e.target.value.trimStart() });
     checkEmailIsValid(e.target.value);
-    console.log(checkEmailIsValid(e.target.value));
   };
 
-  const handleChangePhone = (e) => {
+  const handleChangePhone = (e: any) => {
     setUserInfo({ ...userInfo, phone: e.target.value });
     checkPhoneNumberIsValid(e.target.value);
-    console.log(checkPhoneNumberIsValid(e.target.value));
   };
 
+  /**
+   * The function check if the input is empty.
+   * If the input is empty, it will return an error.
+   * @param input:string is the input made by the user
+   * @param inputName:string is the input type ("name", "email", "phone")
+   * @returns boolean
+   */
   const checkIfInputIsEmpty = (
     input: string,
     inputName: string
@@ -95,6 +103,13 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
     }
   };
 
+  /**
+   *
+   * @param elementToCheck: string is the input made by the user
+   * @param inputName:string is the input type ("name", "email", "phone")
+   * @param callback: function is the check funtion will call depending on the type of the input
+   * @returns boolean
+   */
   const checkIfInputIsNotValid = (
     elementToCheck: string,
     inputName: string,
@@ -133,10 +148,20 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
     }
   };
 
-  const handleBlur = (e, elementToCheck, callback) => {
+  /**
+   * When the input is blurred, the form will be checked. Are the entries valid or not?
+   * @param e:element the element blurred
+   * @param elementToCheck : string is the input made by the user
+   * @param callback : function is the check funtion will call depending on the type of the input
+   * @returns boolean
+   */
+  const handleBlur = (
+    e: any,
+    elementToCheck: string,
+    callback: Function
+  ): boolean | void => {
     const formElement = e.target.closest(".form__element");
     const inputId = e.target.id;
-    // console.log(elementToCheck);
 
     if (checkIfInputIsEmpty(elementToCheck, inputId)) {
       return;
@@ -146,7 +171,6 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
       return;
     }
     formElement.classList.remove("error");
-    // handleError(false);
     switch (inputId) {
       case "name":
         setUserInfoError({ ...userInfoError, name: "" });
@@ -164,8 +188,13 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
     }
   };
 
-  const checkForm = () => {
-    const errors = {
+  /**
+   * check the entire form, if it is valid, then the user can access to the next page.
+   * Otherwise, there will be messages of error.
+   * @returns boolean
+   */
+  const checkForm = (): boolean => {
+    const errors: any = {
       name: "",
       email: "",
       phone: "",
@@ -178,7 +207,7 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
     ) as unknown as HTMLInputElement[];
 
     targetElements.forEach((targetElement) => {
-      const targetElementId = targetElement.id;
+      const targetElementId: string = targetElement.id;
       if (userInfo[targetElementId] === "") {
         // const targetElement = document.getElementById("name");
         const targetParentElement: HTMLElement = targetElement.closest(
@@ -257,7 +286,12 @@ const Info: React.FC<Props> = ({ handleInfo, name, email, phone, step }) => {
     return formIsValid;
   };
 
-  const handleClick = (e) => {
+  /**
+   * The form will be checked if valid, the user is redirected to the next page.
+   *
+   * @param e
+   */
+  const handleClick = (e: any): void => {
     e.preventDefault();
 
     if (checkForm()) {

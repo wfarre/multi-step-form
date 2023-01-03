@@ -1,14 +1,28 @@
 // @ts-ignore
-
 import "./styles/App.css";
-import Sidebar from "./components/Sidebar/Sidebar";
 
 import React, { useState } from "react";
-import Info from "./pages/Info.tsx";
+import Info from "./pages/Info";
+// const Info: Element = require("./pages/Info").default;
+
 import Addon from "./pages/Addon";
 import Plan from "./pages/Plan";
 import Summary from "./pages/Summary";
 import Thankyou from "./pages/Thankyou";
+
+import Sidebar from "./components/Sidebar/Sidebar";
+
+import { PlanObject } from "./pages/Plan";
+import { AddonObject } from "./pages/Addon";
+
+export interface User {
+  step: number;
+  name: string;
+  email: string;
+  phone: string;
+  plan: PlanObject;
+  addons: AddonObject[];
+}
 
 const App: React.FC = () => {
   const [userInfo, setUserInfo] = useState({
@@ -46,7 +60,7 @@ const App: React.FC = () => {
     ],
   });
 
-  const handleChoosePlan = (userPlan) => {
+  const handleChoosePlan = (userPlan: PlanObject) => {
     setUserInfo({
       ...userInfo,
       plan: {
@@ -58,7 +72,7 @@ const App: React.FC = () => {
     });
   };
 
-  const handleInfo = (info) => {
+  const handleInfo = (info: User) => {
     setUserInfo({
       ...userInfo,
       name: info.name,
@@ -75,7 +89,7 @@ const App: React.FC = () => {
     setUserInfo({ ...userInfo, step: userInfo.step - 1 });
   };
 
-  const handleAddons = (addons) => {
+  const handleAddons = (addons: AddonObject[]) => {
     setUserInfo({ ...userInfo, addons: addons, step: userInfo.step + 1 });
   };
 

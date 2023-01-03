@@ -1,13 +1,33 @@
 import React, { useEffect } from "react";
 import Card from "../components/Card/Card";
-import { ReactComponent as IconArcade } from "../assets/images/icon-arcade.svg";
-import { ReactComponent as IconAdvanced } from "../assets/images/icon-advanced.svg";
-import { ReactComponent as IconPro } from "../assets/images/icon-pro.svg";
 import { useState } from "react";
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer.jsx";
+import Footer from "../components/Footer/Footer";
 
-const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
+const IconArcade: string = require("../assets/images/icon-arcade.svg").default;
+const IconPro: string = require("../assets/images/icon-pro.svg").default;
+const IconAdvanced: string =
+  require("../assets/images/icon-advanced.svg").default;
+
+export interface PlanObject {
+  name: string;
+  yearly: boolean;
+  price: number;
+}
+
+interface PlanProps {
+  prevStep: Function;
+  plan: PlanObject;
+  handleChoosePlan: Function;
+  step: number;
+}
+
+const Plan: React.FC<PlanProps> = ({
+  prevStep,
+  plan,
+  handleChoosePlan,
+  step,
+}) => {
   const [yearlyChecked, setYearlyChecked] = useState(plan.yearly);
   const [choosenPlan, setChoosenPlan] = useState({
     name: plan.name,
@@ -15,22 +35,20 @@ const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
     price: plan.price,
   });
 
-  const handleCheck = () => {
+  const handleCheck = (): void => {
     setYearlyChecked(!yearlyChecked);
-
-    console.log(yearlyChecked);
   };
 
   useEffect(() => {
-    const cards = document.querySelectorAll(".radio-input");
+    const cards: any = document.querySelectorAll(".radio-input");
 
-    const getPrice = () => {
-      let rightPrice;
-      cards.forEach((card) => {
-        if (card.checked) {
-          const price = parseInt(
+    const getPrice = (): number => {
+      let rightPrice: number = 0;
+      cards?.forEach((card: any) => {
+        if (card?.checked) {
+          const price: number = parseInt(
             card
-              .closest(".card-wrapper")
+              ?.closest(".card-wrapper")
               .querySelector(".card__type__price")
               .innerHTML.split("$")[1]
               .split("/")[0]
@@ -49,14 +67,13 @@ const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
     handleChoosePlan(choosenPlan);
   };
 
-  const handleCardClick = (title, price) => {
+  const handleCardClick = (title: string, price: number) => {
     console.log(price);
     setChoosenPlan({ ...choosenPlan, price: price, name: title });
   };
 
   return (
     <div>
-      {/* <main> */}
       <section className="section section--plan">
         <Header
           title="Select your plan"
@@ -65,27 +82,42 @@ const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
         <div className="container container--plan">
           <Card
             title="Arcade"
-            price="9"
-            icon=<IconArcade className="logo" />
+            price={9}
+            // icon=<IconArcade className="logo" />
+            // icon={<img src={IconArcade} className="logo" alt=""></img>}
+            src={IconArcade}
+            alt=""
             yearlyChecked={yearlyChecked}
             // selected={true}
-            handleChoosenPlan={(title, price) => handleCardClick(title, price)}
+            handleChoosenPlan={(title: string, price: number) =>
+              handleCardClick(title, price)
+            }
             choosenPlan={choosenPlan}
           />
           <Card
             title="Advanced"
-            price="12"
-            icon=<IconAdvanced className="logo" />
+            price={12}
+            // icon={<img src={IconAdvanced} className="logo" alt=""></img>}
+            src={IconAdvanced}
+            alt=""
+            // icon=<IconAdvanced className="logo" />
             yearlyChecked={yearlyChecked}
-            handleChoosenPlan={(title, price) => handleCardClick(title, price)}
+            handleChoosenPlan={(title: string, price: number) =>
+              handleCardClick(title, price)
+            }
             choosenPlan={choosenPlan}
           />
           <Card
             title="Pro"
-            price="15"
-            icon=<IconPro className="logo" />
+            price={15}
+            // icon={<img src={IconPro} className="logo" alt=""></img>}
+            src={IconPro}
+            alt=""
+            // icon=<IconPro className="logo" />
             yearlyChecked={yearlyChecked}
-            handleChoosenPlan={(title, price) => handleCardClick(title, price)}
+            handleChoosenPlan={(title: string, price: number) =>
+              handleCardClick(title, price)
+            }
             choosenPlan={choosenPlan}
           />
         </div>
@@ -104,7 +136,6 @@ const Plan = ({ prevStep, plan, handleChoosePlan, step }) => {
           <h3 className="toggle-title toggle-title--yearly">Yearly</h3>
         </div>
       </section>
-      {/* </main> */}
       <Footer path={step} prevStep={prevStep} handleClick={handleClick} />
     </div>
   );

@@ -1,18 +1,18 @@
-import React, { FC, useEffect, useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import React from "react";
 
-// interface FooterProps {
-//   path: number;
-//   handleClick: Function;
-//   prevStep?: Function;
-//   handleSubmit?: Function;
-// }
+interface FooterProps {
+  path: number;
+  handleClick?: Function;
+  prevStep?: Function;
+  handleSubmit?: Function;
+}
 
-const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
-  const [link, setLink] = useState("");
-  const [backLink, setBackLink] = useState("");
-  console.log(path);
-
+const Footer: React.FC<FooterProps> = ({
+  path,
+  handleClick,
+  prevStep,
+  handleSubmit,
+}) => {
   return (
     <footer className="footer">
       <div className="container">
@@ -22,7 +22,7 @@ const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
           type="button"
           // className={path === "/form/info" ? "hidden" : "btn btn--back"}
           className={path === 1 ? "transparent" : "btn btn--back"}
-          onClick={() => prevStep()}
+          onClick={() => prevStep !== undefined && prevStep()}
         >
           Go back
         </button>
@@ -30,12 +30,16 @@ const Footer = ({ path, handleClick, prevStep, handleSubmit }) => {
           <button
             type="submit"
             className="btn btn--confirm"
-            onClick={() => handleSubmit()}
+            onClick={() => handleSubmit !== undefined && handleSubmit()}
           >
             Confirm
           </button>
         ) : (
-          <button type="button" className="btn" onClick={(e) => handleClick(e)}>
+          <button
+            type="button"
+            className="btn"
+            onClick={(e) => handleClick !== undefined && handleClick(e)}
+          >
             Next step
           </button>
         )}

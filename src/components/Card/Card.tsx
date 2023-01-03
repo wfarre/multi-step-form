@@ -1,24 +1,38 @@
 import React from "react";
+import { PlanObject } from "../../pages/Plan";
 
-const Card = ({
-  icon,
+interface CardProps {
+  // icon?: iconElement;
+  alt: string;
+  src: string;
+  title: string;
+  price: number;
+  yearlyChecked: boolean;
+  handleChoosenPlan: Function;
+  choosenPlan: PlanObject;
+}
+
+const Card: React.FC<CardProps> = ({
+  // icon,
+  alt,
+  src,
   title,
   price,
   yearlyChecked,
-  selected,
   handleChoosenPlan,
   choosenPlan,
 }) => {
-  const handleChange = (e) => {
-    const cardWrapper = e.target.closest(".card-wrapper");
-    console.log(e.target.closest(".card-wrapper"));
-    const cardTitle = cardWrapper.querySelector(".card__type__title");
-    const cardPrice = cardWrapper.querySelector(".card__type__price");
+  const handleChange = (e: any) => {
+    const cardWrapper = (e.target as Element)?.closest(".card-wrapper");
+    const cardTitle = cardWrapper?.querySelector(".card__type__title");
+    const cardPrice = cardWrapper?.querySelector(".card__type__price");
 
-    console.log(cardPrice.innerHTML.split("$")[1].split("/")[0]);
-    const price = parseInt(cardPrice.innerHTML.split("$")[1].split("/")[0]);
+    const price: number =
+      cardPrice?.innerHTML !== undefined
+        ? parseInt(cardPrice?.innerHTML.split("$")[1].split("/")[0])
+        : 0;
 
-    handleChoosenPlan(cardTitle.innerHTML, price);
+    handleChoosenPlan(cardTitle?.innerHTML, price);
   };
   return (
     <label className="card-wrapper" htmlFor={"radio-card-" + title}>
@@ -31,10 +45,13 @@ const Card = ({
           choosenPlan.name.toLowerCase() === title.toLowerCase() ? true : false
         }
         // checked={selected}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
       />
       <div className="card">
-        <div className="logo-wrapper">{icon}</div>
+        <div className="logo-wrapper">
+          {/* {icon} */}
+          <img src={src} alt={alt} className="logo" />
+        </div>
         <div className="card__info">
           <div className="card__type">
             <h2 className="card__type__title">{title}</h2>

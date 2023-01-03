@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-const Sidebar = ({ path }) => {
+interface SidebarProps {
+  path: number;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ path }) => {
   console.log(path);
   const listSidebar = [
     {

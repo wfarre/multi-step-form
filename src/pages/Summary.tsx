@@ -1,27 +1,43 @@
 import React, { useState } from "react";
-import Footer from "../components/Footer/Footer.jsx";
+import { User } from "../App.js";
+import Footer from "../components/Footer/Footer";
 import Header from "../components/Header/Header";
 
-const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
-  const planPrice = userInfo.plan.price;
-  const getAddonPrice = () => {
-    const addonPrice = [];
+interface SummaryProps {
+  prevStep: Function;
+  userInfo: User;
+  handleSubmit: Function;
+  step: number;
+}
 
-    userInfo.addons.map((addon) => {
+const Summary: React.FC<SummaryProps> = ({
+  prevStep,
+  userInfo,
+  handleSubmit,
+  step,
+}) => {
+  const planPrice: number = userInfo.plan.price;
+
+  const getAddonPrice = (): number[] => {
+    const priceOfAddons: number[] = userInfo.addons.map((addon) => {
       if (addon.checked) {
-        addonPrice.push(addon.price);
+        return addon.price;
+      } else {
+        return 0;
       }
     });
-    return addonPrice;
-  };
-  const addonPrice = getAddonPrice();
 
-  const getTotal = () => {
-    let total = planPrice;
-    const coef = userInfo.plan.yearly ? 10 : 1;
+    return priceOfAddons;
+  };
+
+  const addonPrice: number[] = getAddonPrice();
+
+  const getTotal = (): number => {
+    let total: number = planPrice;
+    const coef: number = userInfo.plan.yearly ? 10 : 1;
 
     addonPrice.map((price) => {
-      return (total = parseInt(total) + parseInt(price) * coef);
+      return (total = total + price * coef);
     });
 
     return total;
@@ -68,6 +84,7 @@ const Summary = ({ prevStep, userInfo, handleSubmit, step }) => {
                       </li>
                     );
                   }
+                  return;
                 })}
               </ul>
             </div>
