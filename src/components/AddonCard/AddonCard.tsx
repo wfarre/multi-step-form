@@ -43,7 +43,8 @@ const AddonCard: React.FC<AddonCardProps> = ({
         <div className="card card--addon">
           {/* <div className="checkbox-wrapper"> */}
           <div className="checkbox">
-            <CheckIcon />
+            {/* <CheckIcon /> */}
+            <img src={CheckIcon} alt="" />
           </div>
           {/* </div> */}
           <div className="card__type">

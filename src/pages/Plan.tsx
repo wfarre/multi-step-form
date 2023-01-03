@@ -28,6 +28,8 @@ const Plan: React.FC<PlanProps> = ({
   handleChoosePlan,
   step,
 }) => {
+  console.log("hello");
+
   const [yearlyChecked, setYearlyChecked] = useState(plan.yearly);
   const [choosenPlan, setChoosenPlan] = useState({
     name: plan.name,

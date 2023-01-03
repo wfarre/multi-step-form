@@ -14,6 +14,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 
 import { PlanObject } from "./pages/Plan";
 import { AddonObject } from "./pages/Addon";
+import { UserInfo } from "./pages/Info";
 
 export interface User {
   step: number;
@@ -72,7 +73,7 @@ const App: React.FC = () => {
     });
   };
 
-  const handleInfo = (info: User) => {
+  const handleInfo = (info: UserInfo) => {
     setUserInfo({
       ...userInfo,
       name: info.name,
